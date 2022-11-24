@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="row">
+  <div class="col-md-8 col-12 mx-auto box my-2">
+    <div class="container p-2">
+        <form action="" method="post" class="text-dark fw-bold fs-5 p-4">
+            {% csrf_token %}
+            <label for="">{{form.title.label}}</label>
+            {{form.title}}
+            <label for="">{{form.description.label}}</label>
+            {{form.description}}
+            <label for="">{{form.dueDate.label}}</label>
+            {{form.dueDate}}
+            <label for="">{{form.status.label}}</label>
+            {{form.status}}
+            <div class="row mb-3">
+              <label class="col-form-label col-sm-2">Tags :</label>
+              <div class="col-sm-2">
+                  {% for t in tags %}
+                  <div class="form-check">
+                      <label class="form-check-label"><input class="form-check-input" type="checkbox" name="{{t.name}}" value="{{t.id}}"  {% if t in task.number_of_tags %}checked{% endif %} >{{t.name}}</label>
+                  </div>
+                  {% endfor %}
+              </div>
+            </div>
+            <input type="submit" value="Update Task" id="edit" class="btn btn-outline-dark w-100 my-2">
+        </form>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block start %}
+
+<div class="row">
+    <div class="col-md-8 col-12 mx-auto box mt-2">
+      <div class="container my-2">
+        <h2>Add Tags</h2>
+        <form action="" method="post" class="my-4 p-2 box">
+            {% csrf_token %}
+            <input type="text" name="tags" class="form-control my-2" placeholder="Enter tag names " >
+            <input type="submit" value="Add tag " class="btn btn-outline-dark">
+        </form>
+
+        <h3>Available Tags</h3>
+    <table class="table table-dar table-striped text-center box">
+      {% for t in tags %}
+      <tr>
+        <td>{{t}}</td>
+        <td><a class="btn btn-outline-danger btn-sm" href="{% url 'delete_tags' t.id %}">Delete</a></td>
+      </tr>
+      {%endfor %}
+    </table>
+      </div> 
+
+    </div>
+</div>
+
+{% endblock %}
